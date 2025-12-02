@@ -2,23 +2,29 @@
 #include <cmath>
 #include <iostream>
 
+# define FIX_FACTOR(a) (1 << a)
 
 Fixed::Fixed(): value(0) {
-	std::cout << "Default contructor called\n";
+	std::cout << "Default constructor called\n";
+}
+
+Fixed::Fixed(const Fixed &other) {
+	value = other.getRawBits();
+	std::cout << "Copy constructor called\n";
 }
 
 Fixed::Fixed(const int number) {
 	value = number << fractBits;
-	std::cout << "Copy contructor for int  called\n";
+	std::cout << "Int constructor called\n";
 }
 
 Fixed::Fixed(const float number) {
-	value = (int)(roundf(number * (1 << fractBits)));
-	std::cout << "Copy contructor for float called\n";
+	value = (int)(roundf(number * (FIX_FACTOR(fractBits))));
+	std::cout << "Float constructor called\n";
 }
 
 Fixed&	Fixed::operator=(const Fixed& other) {
-	std::cout << "Copy Assignment operator contructor called\n";
+	std::cout << "Copy Assignment operator called\n";
 	if (this != &other)
 		value = other.getRawBits();
 	return (*this);
@@ -29,7 +35,6 @@ Fixed::~Fixed() {
 }
 
 int	Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member function called\n";
 	return (value);
 }
 
@@ -37,24 +42,24 @@ void	Fixed::setRawBits(const int val) {
 	value = val;
 }
 
-float	Fixed::toFloat( void ) {
+float	Fixed::toFloat( void ) const{
 	float	val;
 
-	val = (float)value / (1 << fractBits);
+	val = (float)value / (FIX_FACTOR(fractBits));
 	return (val);
 }
 
 
-int	Fixed::toInt( void ) {
+int	Fixed::toInt( void ) const {
 	int	val;
 
-	val = value >> fractBits;
+	val = (int)(value >> fractBits);
 	return (val);
 }
 
 
-std::ostream	&operator<<(std::ostream &stream, Fixed &number)
+std::ostream	&operator<<(std::ostream &stream, const Fixed &f)
 {
-	stream << number.toFloat();
+	stream << f.toFloat();
 	return (stream);
 }
