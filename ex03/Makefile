@@ -7,7 +7,7 @@ NAME=Fixed
 OBJS=$(SRC:%.cpp=%.o)
 
 %.o:%.c
-	$(CPP) $(CFLAGS) -c $(SRC)
+	$(CPP) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 

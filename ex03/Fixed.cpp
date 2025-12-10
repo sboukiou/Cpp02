@@ -90,25 +90,25 @@ bool	Fixed::operator!=(const Fixed &f) const {
 
 
 
-Fixed	Fixed::operator-(const Fixed &f) {
+Fixed	Fixed::operator-(const Fixed &f) const {
 	Fixed	result(0);
 	result.value = value - f.getRawBits();
 	return (result);
 }
 
-Fixed	Fixed::operator+(const Fixed &f) {
+Fixed	Fixed::operator+(const Fixed &f) const {
 	Fixed	result(0);
 	result.value = value + f.getRawBits();
 	return (result);
 }
 
-Fixed	Fixed::operator*(const Fixed &f) {
+Fixed	Fixed::operator*(const Fixed &f) const {
 	Fixed	result(0);
 	result.value = (value * f.getRawBits()) >> fractBits;
 	return (result);
 }
 
-Fixed	Fixed::operator/(const Fixed &f) {
+Fixed	Fixed::operator/(const Fixed &f) const {
 	Fixed	result(0);
 	result.value = (value << fractBits) / f.getRawBits();
 	return (result);

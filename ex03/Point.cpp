@@ -16,12 +16,22 @@ Point::Point(const Point &other): x(other.x), y(other.y) {
 
 
 Point&	Point::operator=(const Point& other) {
-	if (&other == this)
-		return (*this);
-	/*Copy asssignment operator implement here*/
+	/*Copy asssignment operator should have no effect*/
+	/*	whatsover , ! The points are fixed , once created they remain*/
+	/*	their value for the whole program lifetime*/
 	return (*this);
 }
 
 Point::~Point() {
 	/*Add some INFO debugger*/
+}
+
+/*Getters and Setters*/
+
+const Fixed&	Point::getX(void) {
+	return  (x);
+}
+
+const Fixed&	Point::getY(void) {
+	return  (y);
 }
