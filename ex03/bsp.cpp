@@ -1,6 +1,7 @@
 #include "./Point.hpp"
+#include <iostream>
 
-static Fixed	fixedAbs(Fixed &f) {
+static Fixed	fixedAbs(const Fixed &f) {
 	if (f < Fixed(0))
 		return (Fixed(0) - f);
 	return (f);
