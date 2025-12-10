@@ -20,12 +20,12 @@ class Fixed {
 		float	toFloat( void ) const;
 		int		toInt( void ) const;
 		// Overload the comparison operators
-		bool	operator<(const Fixed &f);
-		bool	operator>(const Fixed &f);
-		bool	operator==(const Fixed &f);
-		bool	operator<=(const Fixed &f);
-		bool	operator>=(const Fixed &f);
-		bool	operator!=(const Fixed &f);
+		bool	operator<(const Fixed &f) const;
+		bool	operator>(const Fixed &f) const;
+		bool	operator==(const Fixed &f) const;
+		bool	operator<=(const Fixed &f) const;
+		bool	operator>=(const Fixed &f) const;
+		bool	operator!=(const Fixed &f) const;
 		// Overload the arithmetic operators
 		Fixed	operator+(const Fixed &f);
 		Fixed	operator-(const Fixed &f);
@@ -37,10 +37,10 @@ class Fixed {
 		Fixed	operator++(int);
 		Fixed&	operator--();
 		Fixed	operator--(int);
-		 Fixed &min(Fixed &x, Fixed &y);
-        const  Fixed &min(const Fixed &x, const Fixed &y);
-         Fixed &max(Fixed &x, Fixed &y);
-        const  Fixed &max(const Fixed &x, const Fixed &y);
+		static Fixed		&min(Fixed &x, Fixed &y);
+        static const Fixed	&min(const Fixed &x, const Fixed &y);
+        static Fixed		&max(Fixed &x, Fixed &y);
+        static const Fixed	&max(const Fixed &x, const Fixed &y);
 };
 
 std::ostream	&operator<<(std::ostream &stream, const Fixed &f);
